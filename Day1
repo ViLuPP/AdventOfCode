@@ -1,0 +1,29 @@
+def fileReader():
+    input = []
+    with open('inputDay1.txt') as file:
+        for depth in file:
+            input.append(int(depth))
+        file.close()
+    return input
+
+def day1_part1(input):
+    increased = 0
+    prev = input[0]
+    for depth in input:
+        if (depth > prev):
+            increased += 1           
+        prev = depth
+    return increased;
+    
+def day1_part2(input):
+    previousBlock =  input[0] + input[1] + input[2] 
+    increase = 0
+    for index in range(1, len(input) - 2):
+        currentBlock =  input[index] + input[index + 1] + input[index + 2]        
+        if(currentBlock > previousBlock):
+            increase +=1
+        previousBlock = currentBlock
+    return increase
+
+print('Day One part 1:', day1_part1(fileReader()))
+print('Day One part 2:', day1_part2(fileReader()))
