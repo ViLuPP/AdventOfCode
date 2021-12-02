@@ -1,0 +1,37 @@
+def fileReader():
+    with open('inputDay2.txt') as file:
+        lines = [line.split() for line in file]
+        for i in range(len(lines)):
+            lines[i][1] = int(lines[i][1])
+    return lines
+
+def day2_part1(lines):
+    horizontal = 0
+    vertical = 0
+    for group in lines:
+        x, y = str(group[0]), int(group[1])
+        if (x == "forward"):
+            horizontal = horizontal + y
+        elif (x == "up"):
+            vertical = vertical - y
+        elif (x == "down"):
+            vertical = vertical + y
+    return horizontal * vertical;
+    
+def day2_part2(lines):
+    horizontal = 0
+    vertical = 0
+    aim = 0
+    for group in lines:
+        x, y = str(group[0]), int(group[1])
+        if (x == "forward"):
+            horizontal = horizontal + y
+            vertical = vertical + (aim * y) 
+        elif (x == "up"):
+            aim = aim - y
+        elif (x == "down"):
+            aim = aim + y
+    return horizontal * vertical;
+
+print('Day Two part 1:', day2_part1(fileReader()))
+print('Day Two part 2:', day2_part2(fileReader()))
